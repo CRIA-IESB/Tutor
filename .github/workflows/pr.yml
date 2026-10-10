@@ -1,0 +1,30 @@
+# Confere o PR em si: título vira a mensagem do commit (squash) e a issue liga código ↔ horas no Clockify.
+# Separado do ci.yml porque roda também quando o título/corpo é editado.
+name: PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  pr:
+    name: pr
+    runs-on: ubuntu-latest
+    steps:
+      - name: título em Conventional Commits e issue vinculada
+        env:
+          TITULO: ${{ github.event.pull_request.title }}
+          CORPO: ${{ github.event.pull_request.body }}
+        run: |
+          ok=1
+          if ! grep -Eq '^(feat|fix|refactor|test|docs|chore|ci|perf)(\([^)]+\))?!?: .+' <<< "$TITULO"; then
+            echo "::error::Título fora do padrão. Ex.: fix(usuarios): exige login em /usuarios/buscar"
+            ok=0
+          fi
+          if ! grep -Eiq '(close[sd]?|fix(e[sd])?|resolve[sd]?) #[0-9]+' <<< "$CORPO"; then
+            echo "::error::Vincule a issue no corpo do PR: Closes #123"
+            ok=0
+          fi
+          [ "$ok" = 1 ]

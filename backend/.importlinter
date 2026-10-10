@@ -1,0 +1,43 @@
+; Regras de camadas do backend (docs/arquitetura.md, D-10). Roda na CI: `cd backend && PYTHONPATH=. lint-imports`.
+; Entrada (routes, socket) -> services -> models. Rota e socket não falam com banco: chamam um service.
+
+[importlinter]
+root_packages =
+    application
+
+[importlinter:contract:camadas]
+name = Camadas: entrada (routes | socket) acima de services acima de models
+type = layers
+layers =
+    application.routes | application.socket
+    application.services
+    application.models
+
+; ignore_imports = dívida conhecida em out/2026. Não adicione linhas: corrija movendo o acesso para um service e apague a linha.
+[importlinter:contract:entrada-sem-banco]
+name = Rotas e socket não acessam models nem o banco direto (passe por services)
+type = forbidden
+source_modules =
+    application.routes
+    application.socket
+forbidden_modules =
+    application.models
+    application.config.database
+allow_indirect_imports = true
+ignore_imports =
+    application.routes.route_admin -> application.config.database
+    application.routes.route_admin -> application.models.model_materia
+    application.routes.route_admin -> application.models.model_turma
+    application.routes.route_admin -> application.models.model_usuario
+    application.routes.route_auth -> application.config.database
+    application.routes.route_auth -> application.models.model_token_convite
+    application.routes.route_auth -> application.models.model_usuario
+    application.routes.route_turmas -> application.models.model_turma
+    application.routes.route_usuarios -> application.config.database
+    application.routes.route_usuarios -> application.models
+    application.socket.Impl.busca_semantica -> application.config.database
+    application.socket.Impl.busca_semantica -> application.models
+    application.socket.Impl.registrar_chat -> application.config.database
+    application.socket.Impl.registrar_chat -> application.models.model_chat
+    application.socket.Impl.registrar_mensagem -> application.config.database
+    application.socket.Impl.registrar_mensagem -> application.models.model_mensagem

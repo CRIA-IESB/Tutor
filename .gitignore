@@ -11,3 +11,6 @@ docs_full/
 .claude
 .idea/
 .env.local
+
+# Uploads do ambiente local (podem conter dados pessoais)
+backend/data/

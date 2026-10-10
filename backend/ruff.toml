@@ -1,0 +1,15 @@
+# Padrão de código do backend. Estilo não se discute em review: o ruff decide.
+# Local: o pre-commit roda `ruff check --fix` e `ruff format` a cada commit.
+# CI: os mesmos hooks rodam nos arquivos alterados do PR (.github/workflows/ci.yml).
+target-version = "py311"
+src = ["."]
+extend-exclude = ["migrations"]
+
+[lint]
+# Padrão do ruff (E4, E7, E9, F) + imports ordenados + bugbear + sintaxe moderna.
+extend-select = ["I", "B", "UP"]
+
+[lint.per-file-ignores]
+"app.py" = ["E402"]                  # gevent.monkey.patch_all() precisa rodar antes dos imports
+"**/tests/**" = ["E402"]             # testes ajustam o ambiente antes de importar o app
+"**/__init__.py" = ["F401", "F403"]  # reexportações dos pacotes

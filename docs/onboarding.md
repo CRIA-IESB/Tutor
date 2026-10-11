@@ -16,7 +16,7 @@ Três regras que não se negociam:
 
 1. **Nenhuma LLM externa.** Os modelos rodam na nossa infraestrutura. Nada de API da OpenAI, Gemini, AWS Bedrock etc. no produto.
 2. **Sem fonte, sem resposta.** Toda resposta cita trechos do material. Sem trecho que sustente, o sistema recusa e escala ao professor.
-3. **Dado de aluno não sai.** Não vai para log, Git, print, issue, nem para ferramenta de IA externa (ChatGPT, Gemini, Copilot, Claude…). O código é público (GPL-3.0); os dados, nunca.
+3. **Dado de aluno não sai.** Não vai para log, Git, print, issue, nem para ferramenta de IA externa (ChatGPT, Gemini, Copilot etc.). O código é público (GPL-3.0); os dados, nunca.
 
 ## 2. Primeiro dia
 

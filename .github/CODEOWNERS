@@ -1,0 +1,15 @@
+# Mudanças nestes caminhos pedem aprovação do líder técnico.
+# Só vale com "Require review from Code Owners" ligado na branch protection.
+# Ao migrar para a org do CRIA: troque @gblzera por um time (@org/lideres) com pelo menos 2 pessoas,
+# senão os PRs do próprio líder nesses caminhos ficam sem quem aprove.
+/docs/arquitetura.md          @gblzera
+/.github/                     @gblzera
+/.pre-commit-config.yaml      @gblzera
+/biome.json                   @gblzera
+/backend/ruff.toml            @gblzera
+/backend/.importlinter        @gblzera
+/backend/application/auth/    @gblzera
+/backend/application/socket/  @gblzera
+/backend/migrations/          @gblzera
+/k8s/                         @gblzera
+/docker-compose*.yml          @gblzera

@@ -2,12 +2,14 @@
 
 Guia de configuração para o ambiente de desenvolvimento do projeto.
 
+> **Comece aqui:** [onboarding](docs/onboarding.md) · [como contribuir](CONTRIBUTING.md) · [arquitetura](docs/arquitetura.md) · [checklist de implantação](docs/checklist-implantacao.md)
+
 ## Stack de Tecnologias
 
 - **Frontend:** TypeScript com [Next.js](https://nextjs.org/), React e [Lucide](https://lucide.dev/).
 - **Backend:** Python com [Flask](https://flask.palletsprojects.com/), [Selenium](https://www.selenium.dev/) e [Docling](https://github.com/DS4SD/docling).
-- **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/) e [ChromaDB](https://www.trychroma.com/).
-- **LLM:** Integração com modelos de linguagem via [Ollama](https://ollama.com/).
+- **Banco de Dados:** [PostgreSQL](https://www.postgresql.org/) com [pgvector](https://github.com/pgvector/pgvector).
+- **LLM:** modelos abertos servidos internamente ([Ollama](https://ollama.com/), depois vLLM). Hoje o chat ainda chama o AWS Bedrock; ver [arquitetura](docs/arquitetura.md).
 - **Ambiente:** Totalmente containerizado com [Docker](https://www.docker.com/).
 
 ---

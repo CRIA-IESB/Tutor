@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "npx --yes @biomejs/biome@2.5.15 check ."
   },
   "dependencies": {
     "axios": "^1.10.0",

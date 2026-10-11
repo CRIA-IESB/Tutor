@@ -1,0 +1,28 @@
+name: Tarefa
+description: Unidade de trabalho. Vira branch, PR e horas no Clockify (com o nº da issue na descrição).
+body:
+  - type: markdown
+    attributes:
+      value: "Depois de criar, ponha uma etiqueta de estimativa (`Meio período/dia`, `Um/Dois dias`…). Maior que `Três/Quatro dias`? Quebre em tarefas menores."
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: O que e por quê
+      description: 1 a 2 frases. Link do épico/US em docs/epicos, se houver.
+    validations:
+      required: true
+  - type: textarea
+    id: aceite
+    attributes:
+      label: Critérios de aceite
+      description: Como sabemos que está pronto. Precisa ser testável.
+      value: "- [ ] "
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options: [backend, frontend, IA/RAG, infra/CI, docs]
+    validations:
+      required: true

@@ -1,0 +1,38 @@
+# Padrão aplicado a cada commit. Instale uma vez por máquina:
+#   pip install pre-commit && pre-commit install
+# A CI roda este mesmo arquivo nos arquivos alterados do PR: commit fora do padrão não entra.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  - repo: local
+    hooks:
+      # Hook local via npx: o hook oficial (biomejs/pre-commit) quebra no npm 11+ (EALLOWGIT).
+      - id: biome
+        name: biome (frontend)
+        entry: npx --yes @biomejs/biome@2.5.15 check --write --files-ignore-unknown=true --no-errors-on-unmatched
+        language: system
+        files: ^frontend/.*\.(jsx?|tsx?|css|jsonc?)$
+      - id: sem-dados-no-git
+        name: arquivo de dados não entra no Git (LGPD)
+        entry: Dados reais de alunos nunca vão para o Git. Use dados fictícios numa pasta fixtures/.
+        language: fail
+        files: \.(csv|tsv|xlsx?|ods|sql|dump|bak|sqlite3?|db|parquet)$|^backend/data/
+        exclude: ^backend/migrations/|/fixtures/
+      - id: sem-env
+        name: .env não entra no Git
+        entry: Segredos ficam no .env local. Commite só o .env.example.
+        language: fail
+        files: (^|/)\.env(\..+)?$
+        exclude: \.env\.example$

@@ -69,3 +69,5 @@ A partir daí o `git commit` já roda os hooks. Rodar em tudo: `pre-commit run -
 | Security Pipeline | CodeQL, Semgrep, Sonar etc. | ainda não (ver `docs/checklist-implantacao.md`) |
 
 O padrão vale para os **arquivos que você alterou**: tocou num arquivo antigo, deixe-o no padrão. Assim o legado converge sem um PR gigante.
+
+Depois do merge na `main`, o job `deploy-alpha` atualiza o ambiente alpha sozinho (fica inativo até o servidor existir).

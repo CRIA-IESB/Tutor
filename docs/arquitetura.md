@@ -94,6 +94,7 @@ Regras técnicas:
 | Dados | fictícios | fictícios | reais, com RIPD aprovado | reais |
 | LLM | Ollama, modelo pequeno | Ollama | vLLM | vLLM |
 | Orquestração | docker compose | docker compose | a definir com a TI do IESB | o que a TI do IESB operar |
+| Deploy | manual | automático a cada merge na `main` (job `deploy-alpha`) | a definir | runner do GitHub Actions dentro da rede do IESB, sem SSH aberto para a internet |
 
 ## 6. Decisões
 
@@ -127,7 +128,7 @@ Regras técnicas:
 | Citação e recusa | o prompt pede citação, mas os trechos vão sem ID; a recusa está comentada; não há verificação | seção 3 | P1 |
 | Histórico | vem do cliente e entra no prompt (injeção de prompt) | lido do banco | P1 |
 | Logs | `print` com conteúdo de mensagem, e-mail e nome de arquivo; `str(e)` devolvido ao cliente | logs sem PII | P1 |
-| Infra | compose sem pgvector; k8s sem servidor de LLM nem GPU; uploads sem volume; deploy no EKS do Bayarea | D-04, D-07 | P1 |
+| Infra | compose sem pgvector; k8s sem servidor de LLM nem GPU; uploads sem volume | D-04, D-07 | P1 |
 | Mensagens longas | `mensagens.conteudo` é `varchar(3200)`, mas a resposta pode ter até 4096 tokens | `text` | P2 |
 
 ## 8. Pendências

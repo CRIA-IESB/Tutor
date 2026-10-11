@@ -27,12 +27,13 @@ Dono: líder técnico. Marque por PR ou copie para uma issue fixada. Itens marca
 - [x] Camadas do backend verificadas pelo import-linter (16 violações antigas listadas como dívida)
 - [x] `backend/data/` (uploads locais) no `.gitignore`
 - [x] Fork em [CRIA-IESB/Tutor](https://github.com/CRIA-IESB/Tutor), só com a `main`, issues ligadas e etiquetas de estimativa copiadas
-- [ ] Ligar o GitHub Actions no fork (aba *Actions* → habilitar workflows; fork vem com eles desligados)
+- [x] GitHub Actions ativo no fork
 - [ ] Convidar o time para a org `CRIA-IESB` (*Settings → People*)
 - [ ] Branch protection na `main`: exigir PR, 1 aprovação, checks `padrao`, `backend`, `frontend` e `pr`, review de Code Owners; bloquear force-push
 - [ ] Ativar secret scanning e push protection (grátis em repositório público)
 - [ ] Trocar `@gblzera` no `CODEOWNERS` por um time da org (ex.: `@CRIA-IESB/lideres`) com 2 ou mais pessoas
-- [ ] Desativar o `ci-cd.yml` (faz deploy no EKS da AWS do Bayarea) até existir o ambiente do CRIA
+- [x] CD do CRIA no `ci.yml`: o job `deploy-alpha` atualiza o alpha a cada merge na `main` (substitui o deploy do Bayarea)
+- [ ] Ativar o CD quando a VM do alpha existir: repo clonado em `~/Tutor` com o `.env`; variables `ALPHA_HOST` e `ALPHA_USER`; environment `alpha` com os secrets `ALPHA_SSH_KEY` e `ALPHA_KNOWN_HOSTS`
 - [ ] `security.yml` está vermelho desde jul/2026 (Semgrep e SonarCloud da org fabrica-bayarea): corrigir os achados ou rodar só semanalmente
 - [ ] Corrigir os 8 testes que falham na `main` e adicionar o pytest como passo obrigatório do job `backend`
 - [ ] Revisar o commit "Configurando kubernetes" (6df6271), que só existe na `develop` do repo original e não veio para o fork

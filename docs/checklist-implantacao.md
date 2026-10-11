@@ -26,14 +26,16 @@ Dono: líder técnico. Marque por PR ou copie para uma issue fixada. Itens marca
 - [x] CI: `ci.yml` (checks `padrao`, `backend`, `frontend`) e `pr.yml` (check `pr`)
 - [x] Camadas do backend verificadas pelo import-linter (16 violações antigas listadas como dívida)
 - [x] `backend/data/` (uploads locais) no `.gitignore`
-- [ ] Levar o repositório para a org do CRIA (transferir ou fork) e dar acesso ao time
+- [x] Fork em [CRIA-IESB/Tutor](https://github.com/CRIA-IESB/Tutor), só com a `main`, issues ligadas e etiquetas de estimativa copiadas
+- [ ] Ligar o GitHub Actions no fork (aba *Actions* → habilitar workflows; fork vem com eles desligados)
+- [ ] Convidar o time para a org `CRIA-IESB` (*Settings → People*)
 - [ ] Branch protection na `main`: exigir PR, 1 aprovação, checks `padrao`, `backend`, `frontend` e `pr`, review de Code Owners; bloquear force-push
 - [ ] Ativar secret scanning e push protection (grátis em repositório público)
-- [ ] Trocar `@gblzera` no `CODEOWNERS` por um time com 2 ou mais líderes
+- [ ] Trocar `@gblzera` no `CODEOWNERS` por um time da org (ex.: `@CRIA-IESB/lideres`) com 2 ou mais pessoas
 - [ ] Desativar o `ci-cd.yml` (faz deploy no EKS da AWS do Bayarea) até existir o ambiente do CRIA
 - [ ] `security.yml` está vermelho desde jul/2026 (Semgrep e SonarCloud da org fabrica-bayarea): corrigir os achados ou rodar só semanalmente
 - [ ] Corrigir os 8 testes que falham na `main` e adicionar o pytest como passo obrigatório do job `backend`
-- [ ] Arquivar a branch `develop` (tem 1 commit fora da `main`, "Configurando kubernetes": revisar antes)
+- [ ] Revisar o commit "Configurando kubernetes" (6df6271), que só existe na `develop` do repo original e não veio para o fork
 - [ ] Opcional: formatar o legado de uma vez num PR só de formatação, registrado em `.git-blame-ignore-revs`
 
 ## 4. Arquitetura
